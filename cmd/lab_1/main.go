@@ -55,11 +55,10 @@ func main() {
 
 				ts := time.Now()
 				algo.Sort(arr)
-				dur := time.Since(ts)
 
 				logger.Info().
 					Str("algo", algo.String()).
-					Str("dur", dur.Round(time.Millisecond).String()).
+					Str("dur", time.Since(ts).Round(time.Millisecond).String()).
 					Send()
 			}(algo)
 		}
