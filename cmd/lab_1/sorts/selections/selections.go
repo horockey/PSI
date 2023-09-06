@@ -23,9 +23,7 @@ func (srt *selections) Sort(arr []int) []int {
 				minIdx = j
 			}
 		}
-		tmp := res[i]
-		res[i] = min
-		res[minIdx] = tmp
+		res[i], res[minIdx] = res[minIdx], res[i]
 	}
 	return res
 }

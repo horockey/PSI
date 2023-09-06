@@ -3,11 +3,13 @@ package main
 import (
 	"math/rand"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/horockey/PSI/cmd/lab_1/sorts"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/insertions"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/selections"
+	"github.com/horockey/PSI/cmd/lab_1/sorts/swaps"
 	"github.com/rs/zerolog"
 )
 
@@ -20,7 +22,7 @@ func main() {
 	algos := []sorts.SortAlgo{
 		insertions.New(),
 		selections.New(),
-		// swaps.New(),
+		swaps.New(),
 		// quick.New(),
 		// tree.New(),
 		// pyramid.New(),
@@ -29,26 +31,35 @@ func main() {
 	}
 
 	sizes := []int{
+		10,
 		5_000,
 		10_000,
 		100_000,
 		150_000,
 	}
 
+	var wg sync.WaitGroup
+
 	for _, size := range sizes {
-		logger.Info().
+		logger.Warn().
 			Int("size", size).
 			Msg("New size iteration started!")
+
 		arr := generateRandom(size)
+
 		for _, algo := range algos {
-			ts := time.Now()
-			algo.Sort(arr)
-			dur := time.Since(ts)
-			logger.Info().
-				Str("algo", algo.String()).
-				Str("dur", dur.String()).
-				Send()
+			wg.Add(1)
+			go func(algo sorts.SortAlgo) {
+				defer wg.Done()
+				ts := time.Now()
+				algo.Sort(arr)
+				logger.Info().
+					Str("algo", algo.String()).
+					Str("dur", time.Since(ts).String()).
+					Send()
+			}(algo)
 		}
+		wg.Wait()
 	}
 }
 
