@@ -9,6 +9,7 @@ import (
 	"github.com/horockey/PSI/cmd/lab_1/sorts"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/insertions"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/selections"
+	"github.com/horockey/PSI/cmd/lab_1/sorts/shell"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/swaps"
 	"github.com/rs/zerolog"
 )
@@ -26,7 +27,7 @@ func main() {
 		// quick.New(),
 		// tree.New(),
 		// pyramid.New(),
-		// shell.New(),
+		shell.New(),
 		// merge.New(),
 	}
 
@@ -51,11 +52,14 @@ func main() {
 			wg.Add(1)
 			go func(algo sorts.SortAlgo) {
 				defer wg.Done()
+
 				ts := time.Now()
 				algo.Sort(arr)
+				dur := time.Since(ts)
+
 				logger.Info().
 					Str("algo", algo.String()).
-					Str("dur", time.Since(ts).String()).
+					Str("dur", dur.Round(time.Millisecond).String()).
 					Send()
 			}(algo)
 		}
