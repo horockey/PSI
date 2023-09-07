@@ -8,6 +8,7 @@ import (
 
 	"github.com/horockey/PSI/cmd/lab_1/sorts"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/insertions"
+	"github.com/horockey/PSI/cmd/lab_1/sorts/merge"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/selections"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/shell"
 	"github.com/horockey/PSI/cmd/lab_1/sorts/swaps"
@@ -28,7 +29,7 @@ func main() {
 		// tree.New(),
 		// pyramid.New(),
 		shell.New(),
-		// merge.New(),
+		merge.New(),
 	}
 
 	sizes := []int{
@@ -54,7 +55,8 @@ func main() {
 				defer wg.Done()
 
 				ts := time.Now()
-				algo.Sort(arr)
+				res := algo.Sort(arr)
+				_ = res
 
 				logger.Info().
 					Str("algo", algo.String()).
