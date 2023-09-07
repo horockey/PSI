@@ -4,15 +4,22 @@ import "github.com/horockey/PSI/cmd/lab_1/sorts"
 
 var _ sorts.SortAlgo = &tree{}
 
-type tree struct{}
+type tree struct {
+	t *sortTree
+}
 
 func New() *tree {
-	return &tree{}
+	return &tree{
+		t: &sortTree{},
+	}
 }
 
 func (srt *tree) Sort(arr []int) []int {
-	// TODO
-	return nil
+	for _, el := range arr {
+		srt.t.insert(el)
+	}
+
+	return srt.t.getAll()
 }
 
 func (srt *tree) String() string {
