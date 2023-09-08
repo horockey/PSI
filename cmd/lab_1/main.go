@@ -6,14 +6,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/horockey/PSI/cmd/lab_1/sorts"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/insertions"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/merge"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/quick"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/selections"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/shell"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/swaps"
-	"github.com/horockey/PSI/cmd/lab_1/sorts/tree"
+	"github.com/horockey/PSI/pkg/sorts"
+	"github.com/horockey/PSI/pkg/sorts/insertions"
+	"github.com/horockey/PSI/pkg/sorts/merge"
+	"github.com/horockey/PSI/pkg/sorts/quick"
+	"github.com/horockey/PSI/pkg/sorts/selections"
+	"github.com/horockey/PSI/pkg/sorts/shell"
+	"github.com/horockey/PSI/pkg/sorts/swaps"
+	"github.com/horockey/PSI/pkg/sorts/tree"
 	"github.com/rs/zerolog"
 )
 
