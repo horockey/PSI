@@ -9,6 +9,7 @@ import (
 	"github.com/horockey/PSI/pkg/sorts"
 	"github.com/horockey/PSI/pkg/sorts/insertions"
 	"github.com/horockey/PSI/pkg/sorts/merge"
+	"github.com/horockey/PSI/pkg/sorts/pyramid"
 	"github.com/horockey/PSI/pkg/sorts/quick"
 	"github.com/horockey/PSI/pkg/sorts/selections"
 	"github.com/horockey/PSI/pkg/sorts/shell"
@@ -29,7 +30,7 @@ func main() {
 		swaps.New(),
 		quick.New(),
 		tree.New(),
-		// pyramid.New(),
+		pyramid.New(),
 		shell.New(),
 		merge.New(),
 	}

@@ -1,6 +1,6 @@
 package sorts
 
 type SortAlgo interface {
-	Sort(arr []int) []int
+	Sort([]int) []int
 	String() string
 }
