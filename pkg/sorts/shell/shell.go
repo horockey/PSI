@@ -2,6 +2,7 @@ package shell
 
 import (
 	"github.com/horockey/PSI/pkg/sorts"
+	"golang.org/x/exp/slices"
 )
 
 var _ sorts.SortAlgo = &shell{}
@@ -13,6 +14,10 @@ func New() *shell {
 }
 
 func (srt *shell) Sort(arr []int) []int {
+	if len(arr) == 0 {
+		return []int{}
+	}
+
 	res := make([]int, len(arr))
 	copy(res, arr)
 
@@ -22,6 +27,10 @@ func (srt *shell) Sort(arr []int) []int {
 			for k := 0; i+k*step < len(res); k++ {
 				idxs = append(idxs, i+k*step)
 			}
+		}
+
+		if !slices.Contains(idxs, len(res)-1) {
+			idxs = append(idxs, len(res)-1)
 		}
 
 		for _, idx := range idxs {

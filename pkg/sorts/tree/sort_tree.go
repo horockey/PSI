@@ -41,6 +41,9 @@ func (t *sortTree) getAll() []int {
 }
 
 func (t *sortTree) get(subroot *node) []int {
+	if subroot == nil {
+		return []int{}
+	}
 	var l, r []int
 	if subroot.left != nil {
 		l = t.get(subroot.left)
