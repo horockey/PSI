@@ -58,8 +58,7 @@ func main() {
 				defer wg.Done()
 
 				ts := time.Now()
-				res := algo.Sort(arr)
-				_ = res
+				algo.Sort(arr)
 
 				logger.Info().
 					Str("algo", algo.String()).
