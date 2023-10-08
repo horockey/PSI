@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func Sum[T Number](a, b *matrix[T]) (*matrix[T], error) {
+func Sum[T Number](a, b *Matrix[T]) (*Matrix[T], error) {
 	if a.rows != b.rows || a.cols != b.cols {
 		return nil, fmt.Errorf("invalid sizes: (%dx%d) x (%dx%d)", a.rows, a.cols, b.rows, b.cols)
 	}
@@ -17,7 +17,7 @@ func Sum[T Number](a, b *matrix[T]) (*matrix[T], error) {
 		}
 	}
 
-	return &matrix[T]{
+	return &Matrix[T]{
 		storage: res,
 		rows:    a.rows,
 		cols:    a.cols,

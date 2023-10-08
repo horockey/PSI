@@ -8,28 +8,35 @@ import (
 )
 
 func main() {
-	m1 := matrixes.New([][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-	})
+	matrs := []*matrixes.Matrix[int]{
+		matrixes.New([][]int{
+			{1, 2, 3},
+			{4, 5, 6},
+		}),
+		matrixes.New([][]int{
+			{7, 8, 9, 10},
+			{11, 12, 13, 14},
+			{15, 16, 17, 18},
+		}),
+		matrixes.New([][]int{
+			{10},
+			{20},
+			{30},
+			{40},
+		}),
+	}
 
-	m2 := matrixes.New([][]int{
-		{7, 8, 9, 10},
-		{11, 12, 13, 14},
-		{15, 16, 17, 18},
-	})
+	optimSolution := optimOrder(matrs...)
+	fmt.Println(optimSolution)
 
-	m3 := matrixes.New([][]int{
-		{10},
-		{20},
-		{30},
-		{40},
-	})
+	ordered := make([]*matrixes.Matrix[int], 0, len(matrs))
+	for _, idx := range optimSolution.path {
+		ordered = append(ordered, matrs[idx])
+	}
 
-	res, err := matrixes.Mult(m1, m2, m3)
+	res, err := matrixes.MultFixOrder(ordered...)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(res)
+	fmt.Printf("Result:\n%s", res)
 }
